@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple API",
+    "version": "1.0.0",
+    "title": "Simple Inventory API",
+    "contact": {
+      "email": "ciccio@ciccio-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "php-mvc-template.ccapobianco.repl.co",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "admins",
+      "description": "Secured Admin-only calls"
+    },
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/data": {
+      "get": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "get pizzas",
+        "description": "static list of pizzas\n",
+        "operationId": "getPizzas",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all pizzas",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InventoryItem"
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "InventoryItem": {
+      "type": "object",
+      "required": [
+        "category",
+        "desc",
+        "price"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "url",
+          "example": "Margherita"
+        },
+        "desc": {
+          "type": "string",
+          "example": "Widget Adapter"
+        },
+        "category": {
+          "type": "string",
+          "example": "Vegetariana"
+        },
+        "price": {
+          "type": "number",
+          "example": 10
+        }
+      }
+    }
+  }
+}
